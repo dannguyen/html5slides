@@ -468,7 +468,7 @@ function speakPrevItem() {
 
 function getCurSlideFromHash() {
   var slideNo = parseInt(location.hash.substr(1));
-
+console.log("slideno: " + slideNo)
   if (slideNo) {
     curSlide = slideNo - 1;
   } else {
@@ -557,7 +557,7 @@ function addGeneralStyle() {
   el.rel = 'stylesheet';
   el.type = 'text/css';
   //el.href = PERMANENT_URL_PREFIX + 'styles.css';
-  el.href = 'styles.css';
+  el.href = 'slides-styles.css';
   document.body.appendChild(el);
   
   var el = document.createElement('meta');
@@ -584,7 +584,7 @@ function makeBuildLists() {
 
 function handleDomLoaded() {
   slideEls = document.querySelectorAll('section.slides > article');
-
+	console.log("There are " + slideEls.length + " slides");
   setupFrames();
 
   //addFontStyle();
@@ -601,8 +601,10 @@ function handleDomLoaded() {
 };
 
 function initialize() {
-  getCurSlideFromHash();
-
+	console.log("HI")
+  	getCurSlideFromHash();
+	updateHash();
+	
   if (window['_DEBUG']) {
     PERMANENT_URL_PREFIX = '../';
   }
@@ -612,8 +614,16 @@ function initialize() {
   } else {
     document.addEventListener('DOMContentLoaded', handleDomLoaded, false);
   }
+
 }
 
+function myInitialize(){
+	getCurSlideFromHash();
+
+	handleDomLoaded();
+	console.log("Current slide is: " + curSlide)
+}
+/*
 // If ?debug exists then load the script relative instead of absolute
 if (!window['_DEBUG'] && document.location.href.indexOf('?debug') !== -1) {
   document.addEventListener('DOMContentLoaded', function() {
@@ -631,5 +641,7 @@ if (!window['_DEBUG'] && document.location.href.indexOf('?debug') !== -1) {
   // Remove this script
   s.parentNode.removeChild(s);
 } else {
-  initialize();
+//  initialize();
 }
+*/
+
