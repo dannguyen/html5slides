@@ -61,7 +61,7 @@ article {
 
 /* Styles for slides */
 
-.slides > article {
+article {
   font-family: 'Open Sans', Arial, sans-serif;
 
   color: rgb(102, 102, 102);
