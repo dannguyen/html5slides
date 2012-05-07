@@ -17,16 +17,39 @@
     <script src="slides.js"></script>
     <link rel="stylesheet" href="general-styles.css" type="text/css" media="screen" title="no title" charset="utf-8">
   </head>
-    <body>
+    <body onload="generalInitialize();">
       
-    <div>Do the <a  onclick="myInitialize(); return false;">initialize</a></div>
-    <section class='slides layout-regular template-default'>
+    <section class='layout-regular template-default' id="article-deck">
       <article>
         <h1>Debug.</h1>
+        
       </article>
       <article>
         <h3>lorem ipsum</h3>
       </article>
+      
+      
+         <article>
+           <q>
+             The best way to predict the future is to invent it.
+           </q>
+           <div class='author'>
+             Alan Kay
+           </div>
+         </article>
+
+         <article class='smaller'>
+           <q>
+             A distributed system is one in which the failure of a computer 
+             you didn’t even know existed can render your own computer unusable.
+           </q>
+           <div class='author'>
+             Leslie Lamport
+           </div>
+         </article>
+
+
+
   </body>
 </html>
     

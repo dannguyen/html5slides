@@ -582,9 +582,9 @@ function makeBuildLists() {
   }
 };
 
+
 function handleDomLoaded() {
-  slideEls = document.querySelectorAll('section.slides > article');
-	console.log("There are " + slideEls.length + " slides");
+
   setupFrames();
 
   //addFontStyle();
@@ -617,12 +617,62 @@ function initialize() {
 
 }
 
-function myInitialize(){
-	getCurSlideFromHash();
-
-	handleDomLoaded();
-	console.log("Current slide is: " + curSlide)
+function isDomLoaded(){
+	return document.body.classList.contains('loaded');
 }
+
+function isSlideMode(){
+	return document.querySelector("#article-deck").classList.contains("slides");
+}
+
+
+function generalInitialize(){
+	setupSlideEls();
+  	addSlideToggleButtons();
+}
+
+
+function setupSlideEls(){
+	slideEls = document.querySelectorAll('#article-deck > article');
+}
+
+
+function addSlideToggleButtons(){
+  var el = document.createElement('button');
+  el.className = 'modeToggle';
+  el.innerHTML = "Toggle slides";
+  el.addEventListener('click', slideModeToggle, false);
+
+  document.getElementById('article-deck').appendChild(el);	
+  for(var i = 0, x = slideEls.length; i < x; i++){
+	var elx = el.cloneNode(true);
+	elx.addEventListener('click', slideModeToggle, false);
+	slideEls[i].appendChild(elx);
+  }
+
+
+}
+
+
+
+function slideModeToggle(){
+	// add slides class
+	
+	document.querySelector("#article-deck").classList.toggle("slides");
+	if(!isDomLoaded()){
+		getCurSlideFromHash();
+		handleDomLoaded();
+	}else{
+	//	updateSlides();
+	}
+	
+	console.log("slide mode? " + isSlideMode());
+}
+
+
+
+/***** GO GO GO ***/
+
 /*
 // If ?debug exists then load the script relative instead of absolute
 if (!window['_DEBUG'] && document.location.href.indexOf('?debug') !== -1) {
